@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+    defaultConfig {
+        applicationId "com.likeminds"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+    testCompile "junit:junit:4.12"
+
+    // Butter Knife library : https://www.sitepoint.com/tidying-code-with-android-butterknife/
+    compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+
+    // Dagger Library : https://blog.gouline.net/dagger-2-even-sharper-less-square-b52101863542#.7srcjwtb2
+    compile "com.google.dagger:dagger:$rootProject.DaggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.DaggerVersion"
+
+    // Retrofit & OKHttp Library : https://futurestud.io/tutorials/retrofit-getting-started-and-android-client
+    compile "com.squareup.retrofit2:retrofit:$rootProject.RetrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.RetrofitVersion"
+}
